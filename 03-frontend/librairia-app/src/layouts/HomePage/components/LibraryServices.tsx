@@ -1,4 +1,4 @@
-export const LibrairyServices = () => {
+export const LibraryServices = () => {
     return (
         <div className="container mt-5">
             <div className="row py-4 align-items-center border shadow-lg">
