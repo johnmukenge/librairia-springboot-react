@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import BookModel from '../../models/BookModel';
 import { SpinnerLoading } from '../Utils/SpinnerLoading';
+import { SearchBook } from './components/SearchBook';
 
 export const SearchBooksPage = () => {
 
@@ -114,9 +115,9 @@ export const SearchBooksPage = () => {
                     <p>
                         1 a 5 di 22 items
                     </p>
-                    {books.map(book => {
+                    {books.map(book => (
                         <SearchBook book={book} key={book.id} />
-                    })}
+                    ))}
                 </div>
             </div>
         </div>
