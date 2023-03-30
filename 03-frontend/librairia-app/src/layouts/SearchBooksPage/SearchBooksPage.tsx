@@ -27,7 +27,8 @@ export const SearchBooksPage = () => {
             if (searchUrl === '') {
                 url = `${baseUrl}?page=${currentPage - 1}&size=${booksPerPage}`;
             } else {
-                url = baseUrl + searchUrl;
+                let searchWithPage = searchUrl.replace('<pageNumber>', `${currentPage - 1}`);
+                url = baseUrl + searchWithPage;
             }
 
             const response = await fetch(url);
@@ -81,14 +82,17 @@ export const SearchBooksPage = () => {
     }
 
     const searchHandlechange = () => {
+        setCurrentPage(1);
         if (search === '') {
             setSearchUrl('');
         } else {
-            setSearchUrl(`/search/findByTitleContaining?title=${search}&page=0&size=${booksPerPage}`)
+            setSearchUrl(`/search/findByTitleContaining?title=${search}&page=<pageNumber>&size=${booksPerPage}`)
         }
+        setCategorySelection('Book category');
     }
 
     const categoryField = (value: string) => {
+        setCurrentPage(1);
         if (
             value.toLocaleLowerCase() === 'fe' ||
             value.toLocaleLowerCase() === 'be' ||
@@ -96,10 +100,10 @@ export const SearchBooksPage = () => {
             value.toLocaleLowerCase() === 'devops'
         ) {
             setCategorySelection(value);
-            setSearchUrl(`/search/findByCategory?category=${value}&page=0&size=${booksPerPage}`);
+            setSearchUrl(`/search/findByCategory?category=${value}&page=<pageNumber>&size=${booksPerPage}`);
         } else {
             setCategorySelection('All');
-            setSearchUrl(`?page=0&size=${booksPerPage}`);
+            setSearchUrl(`?page=<pageNumber>&size=${booksPerPage}`);
         }
     }
 
