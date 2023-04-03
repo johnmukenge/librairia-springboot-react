@@ -1,6 +1,7 @@
 package it.librairia.springbootlibrairia.config;
 
 import it.librairia.springbootlibrairia.entity.Book;
+import it.librairia.springbootlibrairia.entity.Review;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -20,8 +21,14 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
                 HttpMethod.DELETE,
                 HttpMethod.PATCH};
 
+        /**here we expose the id for our api*/
         config.exposeIdsFor(Book.class);
+        config.exposeIdsFor(Review.class);
+
+
+        /** Make the entity to only work with get, getId, not for delete, update, post and patch*/
         disableHttpMethods(Book.class, config, theUnsupportedActions);
+        disableHttpMethods(Review.class, config, theUnsupportedActions);
 
         /** Configure Cors Mapping*/
         cors.addMapping(config.getBasePath() + "/**")
