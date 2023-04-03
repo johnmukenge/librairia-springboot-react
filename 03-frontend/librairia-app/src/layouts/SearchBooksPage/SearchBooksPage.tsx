@@ -181,8 +181,10 @@ export const SearchBooksPage = () => {
                             <h3>
                                 Non hai trovato quello che stai cercando?
                             </h3>
-                            <a type='button' className="btn main-color btn-md px-4 me-md fw-bold text-white"
-                                href="#">Library Services</a>
+                            <a type='button'
+                                className="btn main-color btn-md px-4 me-md fw-bold text-white"
+                                href="#">Library Services
+                            </a>
                         </div>
                     }
                     {/**Only render <Pagination /> if totalPages > 1 */}
