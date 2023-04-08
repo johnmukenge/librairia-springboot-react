@@ -1,4 +1,10 @@
+import { useOktaAuth } from "@okta/okta-react";
+import { Link } from "react-router-dom";
+
 export const Heros = () => {
+
+    const { authState } = useOktaAuth();
+
     return (
         <div>
             <div className="d-none d-lg-block">
@@ -13,7 +19,13 @@ export const Heros = () => {
                                 Vorremo sapere cosa stavi leggendo. Un libro per imparare nuovi skills oppure approffondirne alcuni
                                 Vorremo anche proporti dei libri con contenuti di qualità
                             </p>
-                            <a className="btn main-color btn-lg text-white" href="#">Collegarsi</a>
+                            {authState?.isAuthenticated
+                                ?
+                                <Link type="button" className="btn main-color btn-lg text-white" to='search'>Scopri i migliori libri
+                                </Link>
+                                :
+                                <Link className="btn main-color btn-lg text-white" to="/login">Collegarsi</Link>
+                            }
                         </div>
                     </div>
                 </div>
@@ -44,7 +56,14 @@ export const Heros = () => {
                                     Vorremo sapere cosa stavi leggendo. Un libro per imparare nuovi skills oppure approffondirne alcuni
                                     Vorremo anche proporti dei libri con contenuti di qualità
                                 </p>
-                                <a className="btn main-color btn-lg text-white" href="#">Collegarsi</a>
+                                {authState?.isAuthenticated
+                                    ?
+                                    <Link type="button" className="btn main-color btn-lg text-white" to='search'>Scopri i migliori libri
+                                    </Link>
+                                    :
+                                    <Link className="btn main-color btn-lg text-white" to="/login">Collegarsi</Link>
+                                }
+
                             </div>
                         </div>
                         <div className="m-2">
